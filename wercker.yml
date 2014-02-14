@@ -1,0 +1,21 @@
+box: wercker/python
+services:
+    - wercker/postgresql
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    # A step that executes `pip install` command
+    - pip-install
+
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+        name: run unit tests
+        code: python project/manage.py test -v2
+# Deploy definition
+deploy:
+    steps:
+        # Execute the heroku-deploy, heroku details can be edited
+        # online at http://app.wercker.com/
+        - heroku-deploy
