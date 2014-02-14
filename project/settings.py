@@ -17,7 +17,10 @@ MANAGERS = ADMINS
 
 # Parse database configuration from $DATABASE_URL
 DATABASES = {
-    'default':  dj_database_url.config()
+    'default': dj_database_url.config(
+        env="WERCKER_POSTGRESQL_URL",
+        default="sqlite:///local_db.sqlite"
+    )
 }
 
 
